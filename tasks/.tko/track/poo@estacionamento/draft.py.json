@@ -1,0 +1,19 @@
+{
+    "patches": [
+        {
+            "label": "2025-12-10_10-51-02",
+            "content": "@@ -1,1391 +0,0 @@\n-from abc import ABC, abstractmethod%0A%0Aclass Veiculo:%0A    def __init__(self, id: str,entrada:int,tipo:str):%0A        self.id = id%0A        self.entrada = entrada%0A        self.tipo = tipo%0A    def setEntrada(self,entrada: float):%0A        return entrada%0A    def getEntrada(self):%0A        entrada = entrada %0A%0A    def setTipo(self):%0A        return self.tipo%0A    def setId(self):%0A        return self.id%0A    %0A    def __str__(self):%0A        return f%22%7Bself.id%7D:%7Bself.entrada%7D:%7Bself.tipo%7D%22%0A%0A    @abstractmethod%0A    def calcularValor():%0A        pass%0Aclass Bike:%0A    def __init__(self, id: str, entrada: int, tipo: str):%0A        super().__init__(id,entrada,tipo)%0A    %0A    def calcularValor(self,horaSaida:float):%0A        return 3%0A    %0Aclass Moto:%0A    def __init__(self, id: str, entrada: int, tipo: str):%0A        super().__init__(id,entrada,tipo)%0A    %0A    def calcularValor(self,horaSaida:float,entrada):%0A        tempo = entrada - horaSaida%0A        return tempo/20%0A    %0Adef main():%0A    veiculo = Veiculo ()%0A    while True:%0A         line = input()%0A         print(%22$%22 + line)%0A         args = line.split()%0A         try:%0A             if args%5B0%5D == %22end%22:%0A                 break%0A             elif args%5B0%5D ==%22show%22:%0A                 print(veiculo)%0A             else:%0A                print(%22Fail: comando invalido%22)%0A         except Exception as e:%0A          print(e)%0Aif __name__ == %22__main__%22:%0A    main()%0A%0A        \n",
+            "lines": "0"
+        },
+        {
+            "label": "2025-12-10_11-28-21",
+            "content": "@@ -184,17 +184,17 @@\n     def \n-g\n+s\n etEntrad\n@@ -240,33 +240,33 @@\n entrada%0A    def \n-s\n+g\n etEntrada(self):\n@@ -302,17 +302,17 @@\n     def \n-g\n+s\n etTipo(s\n@@ -350,17 +350,17 @@\n     def \n-g\n+s\n etId(sel\n",
+            "lines": "57"
+        },
+        {
+            "label": "2025-12-10_11-37-30",
+            "content": "from abc import ABC, abstractmethod\n\nclass Veiculo:\n    def __init__(self, id: str,entrada:int,tipo:str):\n        self.id = id\n        self.entrada = entrada\n        self.tipo = tipo\n    def getEntrada(self,entrada: float):\n        return entrada\n    def setEntrada(self):\n        entrada = entrada \n\n    def getTipo(self):\n        return self.tipo\n    def getId(self):\n        return self.id\n    \n    def __str__(self):\n        return f\"{self.id}:{self.entrada}:{self.tipo}\"\n\n    @abstractmethod\n    def calcularValor():\n        pass\nclass Bike:\n    def __init__(self, id: str, entrada: int, tipo: str):\n        super().__init__(id,entrada,tipo)\n    \n    def calcularValor(self,horaSaida:float):\n        return 3\n    \nclass Moto:\n    def __init__(self, id: str, entrada: int, tipo: str):\n        super().__init__(id,entrada,tipo)\n    \n    def calcularValor(self,horaSaida:float,entrada):\n        tempo = entrada - horaSaida\n        return tempo/20\n    \ndef main():\n    veiculo = Veiculo ()\n    while True:\n         line = input()\n         print(\"$\" + line)\n         args = line.split()\n         try:\n             if args[0] == \"end\":\n                 break\n             elif args[0] ==\"show\":\n                 print(veiculo)\n             else:\n                print(\"Fail: comando invalido\")\n         except Exception as e:\n          print(e)\nif __name__ == \"__main__\":\n    main()\n\n        ",
+            "lines": "57"
+        }
+    ]
+}
