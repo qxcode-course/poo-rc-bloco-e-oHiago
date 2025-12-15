@@ -6,14 +6,14 @@ class Veiculo(ABC):
         self.entrada = entrada
 
     @abstractmethod
-    def calcularValor(self):
+    def calcularValor(self, horaSaida:float):
         pass
     @abstractmethod
     def getTipo(self) -> str:
         pass
     def __str__(self):
         tipo = self.getTipo()
-        return f"______{tipo} : _____{self.id} : {self.entrada}"
+        return f"{tipo:_>10} : {self.id:_>10} : {self.entrada}"
 
 class Bike(Veiculo):
     def __init__(self, id: str, entrada: float):
@@ -40,10 +40,7 @@ class Carro(Veiculo):
     def calcularValor(self,horaSaida:float):
         tempo = horaSaida- self.entrada
         valor = tempo/10
-        if valor < 5.00:
-            raise Exception("fail: Valor minimo é 5 reais")
-        else:
-            return valor
+        return max(valor, 5.00)
         
     def getTipo(self) -> str:
         return "Carro"
@@ -62,13 +59,20 @@ class Estacionamento:
             veiculo = Carro(id,self.tempo)
 
         self.veiculos[id] = veiculo
-    def sair(self):
-        pass
     def listar(self):
         for i in self.veiculos.values():
             print(i)
         print(f"Hora atual: {self.tempo}")
+    def pagar(self, id: str):
+        veiculo = self.veiculos[id]
+        entrada = veiculo.entrada
+        saida = self.tempo
 
+        valor = veiculo.calcularValor(saida)
+
+        print(f"{veiculo.getTipo()} chegou {entrada} saiu {saida}. Pagar R$ {valor:.2f}")
+
+        del self.veiculos[id]
 def main():
 
     estacionamento = Estacionamento ()
@@ -87,6 +91,9 @@ def main():
                 tipo = args[1]
                 id = args[2]
                 estacionamento.entrar(tipo,id)
+            elif args[0] == "pagar":
+                id = args[1]
+                estacionamento.pagar(id)
             else:
                 print("Fail: comando invalido")
          except Exception as e:
